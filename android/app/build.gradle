@@ -4,7 +4,7 @@ apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
 
-//final lottieVersion = "2.8.0";
+final lottieVersion = "2.8.0";
 
 
 /**
@@ -191,8 +191,10 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     //Lottie Animation
-    //implementation 'com.airbnb.android:lottie:$lottieVersion' 
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
     
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'

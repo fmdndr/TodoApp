@@ -9,7 +9,7 @@ const styles = {
         alignItems: 'center',
       },
       row: {
-        width: Dimensions.get('window').width / 1.2,
+        width: Dimensions.get('window').width / 1.25,
         height: Dimensions.get('window').height / 5,
         marginBottom: 30,
         backgroundColor: '#373546',

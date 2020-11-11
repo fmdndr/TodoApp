@@ -77,7 +77,9 @@ const Dashboard = (props) => {
         <ActivityIndicator />
       ) : (
         <View style={{flex: 1}}>
-          <MunuIconComponent />
+          <MunuIconComponent
+            menuPressed={() => props.navigation.openDrawer()}
+          />
 
           <View style={styles.pages.dashboard.container}>
             <FlatList

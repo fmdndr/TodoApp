@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
 import LottieView from 'lottie-react-native';
 //styles
 import styles from '../assets/style';
+import SplashScreen from 'react-native-splash-screen';
 
 const Home = (props) => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <SafeAreaView style={styles.pages.home.safeAreaView}>
       <View style={{flex: 1}}>
