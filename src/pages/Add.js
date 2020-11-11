@@ -53,7 +53,6 @@ const Add = (props) => {
       },
       {headers: {Authorization: `Bearer ${state.userLog.accessToken}`}},
     );
-
     props.navigation.navigate('Dashboard', {load: resp.data});
   };
 
