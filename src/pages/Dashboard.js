@@ -17,7 +17,8 @@ import {
 } from '../components';
 //Style
 import styles from '../assets/style';
-
+// Constatn api urls
+import {TODO_URL} from '../Constatns';
 const Dashboard = (props) => {
   const {state, dispatch} = useContext(Context);
   const [list, setList] = useState([]);
@@ -27,16 +28,11 @@ const Dashboard = (props) => {
     getTodos();
   }, [props.route.params?.load]);
   //Api call for get all todos belong to user
-  console.log('before todo');
-  console.log(props.route.params?.load);
   const getTodos = () => {
     axios
-      .get(
-        'http://192.168.1.37:8080/api/todo/' +
-          state.userLog.username +
-          '/todos',
-        {headers: {Authorization: `Bearer ${state.userLog.accessToken}`}},
-      )
+      .get(TODO_URL + state.userLog.username + '/todos', {
+        headers: {Authorization: `Bearer ${state.userLog.accessToken}`},
+      })
       .then((resp) => {
         setList(resp.data);
         setLoading(false);
@@ -52,7 +48,7 @@ const Dashboard = (props) => {
 
   const setUpdate = async (item) => {
     let resp = await axios.put(
-      `http://192.168.1.37:8080/api/todo/update/${item.username}/${item.id}`,
+      `${TODO_URL}update/${item.username}/${item.id}`,
       {
         id: item.id,
         isDone: true,

@@ -1,13 +1,16 @@
 import React, {useContext, useState} from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
-import LottieView from 'lottie-react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import LottieView from 'lottie-react-native';
 //Context
 import Context from '../context/store';
 //My Components
 import {InputComponent, ButtonComponent} from '../components';
 //Style
 import styles from '../assets/style';
+//Constatn api url
+import {AUTH_URL} from '../Constatns';
 
 const Login = (props) => {
   const {state, dispatch} = useContext(Context);
@@ -21,21 +24,20 @@ const Login = (props) => {
     setPassword(text);
   };
   // Authenticaton Function
-  const authenticate = () => {
-    axios
-      .post('http://192.168.1.37:8080/api/auth/signin', {
+  const authenticate = async () => {
+    try {
+      let resp = await axios.post(AUTH_URL + 'signin', {
         username: username,
         password: password,
-      })
-      .then((resp) => {
-        console.log(resp.data);
-        dispatch({type: 'USER_LOG', userLog: resp.data});
-        props.navigation.navigate('DashboardNavigation');
-        //console.log(resp.data);
-      })
-      .catch((err) => {
-        console.log(err);
       });
+      await AsyncStorage.setItem('@USERNAME', username);
+      await AsyncStorage.setItem('@PASSWORD', password);
+
+      dispatch({type: 'USER_LOG', userLog: resp.data});
+      props.navigation.navigate('DashboardNavigation');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

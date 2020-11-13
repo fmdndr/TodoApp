@@ -7,6 +7,8 @@ import styles from '../assets/style';
 //Lottie
 import LottieView from 'lottie-react-native';
 import axios from 'axios';
+//Constant api url
+import {AUTH_URL} from '../Constatns';
 
 const Signup = (props) => {
   const [username, setUsername] = useState('');
@@ -33,7 +35,7 @@ const Signup = (props) => {
 
   const signup = () => {
     axios
-      .post('http://192.168.1.37:8080/api/auth/signup', {
+      .post(AUTH_URL + 'signup', {
         username: username,
         firstname: firstname,
         lastname: lastname,

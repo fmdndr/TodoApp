@@ -12,9 +12,15 @@ import axios from 'axios';
 //Date
 import DateTimePicker from '@react-native-community/datetimepicker';
 //Components
-import {ButtonComponent, InputComponent} from '../components';
+import {
+  ButtonComponent,
+  InputComponent,
+  MunuIconComponent,
+} from '../components';
 //Style
 import styles from '../assets/style';
+//Constant api url
+import {TODO_URL} from '../Constatns';
 
 const Add = (props) => {
   const {state, dispatch} = useContext(Context);
@@ -44,7 +50,7 @@ const Add = (props) => {
   // Todo Add
   const addTodo = async () => {
     let resp = await axios.post(
-      `http://192.168.1.37:8080/api/todo/add/${state.userLog.username}/todo`,
+      `${TODO_URL}add/${state.userLog.username}/todo`,
       {
         description: description,
         isDone: false,
@@ -58,6 +64,7 @@ const Add = (props) => {
 
   return (
     <SafeAreaView style={styles.pages.add.safeAreaView}>
+      <MunuIconComponent menuPressed={() => props.navigation.openDrawer()} />
       <View style={styles.pages.add.container}>
         <View style={{width: Dimensions.get('window').width / 1.3}}>
           <View>
