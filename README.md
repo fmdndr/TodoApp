@@ -1,6 +1,6 @@
 # Todo App
 
-## This app created  React Native wiht Spring Boot and Jwt
+## This app created  React Native with Spring Boot and Jwt
 
 I get used to **axios**,**react-navigation**,**moment** libraries.
 
